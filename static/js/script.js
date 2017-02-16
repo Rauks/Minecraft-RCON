@@ -714,7 +714,7 @@ function logMsg(msg, sep, cls){
   }
   // Scroll down
   if($("#chkAutoScroll").is(":checked")){
-    $("#groupConsole").scrollTop($("#groupConsole").get(0).scrollHeight);
+    $("#consoleContent .panel-body").scrollTop($("#groupConsole").get(0).scrollHeight);
   }
 }
 function logSuccess(log){
