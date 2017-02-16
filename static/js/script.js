@@ -693,7 +693,7 @@ $(document).ready(function(){
         .css({
           left: left + "px",
           top: top - height - 4 + "px",
-          width: 34 + width + "px"
+          width: 43 + width + "px"
         });
     }
   });
