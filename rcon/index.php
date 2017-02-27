@@ -9,7 +9,6 @@ $timeout = 3;
  
 $rcon = new Rcon($host, $port, $password, $timeout);
 
-$_POST['cmd'] = 'help';
 if(!isset($_POST['cmd'])){
   return;
 }
