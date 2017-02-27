@@ -16,16 +16,17 @@ if(!isset($_POST['cmd'])){
   $response['status'] = 'error';
   $response['error'] = 'Empty command';
 }
-
-if ($rcon->connect()){
-  $rcon->send_command($_POST['cmd']);
-  $response['status'] = 'success';
-  $response['command'] = $_POST['cmd'];
-  $response['response'] = $rcon->get_response();
-}
 else{
-  $response['status'] = 'error';
-  $response['error'] = 'RCON connection error';
+  if ($rcon->connect()){
+    $rcon->send_command($_POST['cmd']);
+    $response['status'] = 'success';
+    $response['command'] = $_POST['cmd'];
+    $response['response'] = $rcon->get_response();
+  }
+  else{
+    $response['status'] = 'error';
+    $response['error'] = 'RCON connection error';
+  }
 }
 
 echo json_encode($response);
