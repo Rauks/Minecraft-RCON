@@ -757,19 +757,35 @@ function sendCommand(command){
   }
   logMsg(command, ">", "success");
   $.post("rcon/index.php", { cmd: command })
-    .done(function( data ){
-      if(data.indexOf("Unknown command") != -1){
-        alertDanger("Unknown command."); 
-        logDanger(data);
-        return;
+    .done(function(json){
+      if(json.status){
+        if(json.status == 'success' && json.response && json.command){
+          if(json.response.indexOf("Unknown command") != -1){
+            alertDanger("Unknown command : " + json.command); 
+            logDanger(json.response);
+          }
+          else if(json.response.indexOf("Usage") != -1){
+            alertWarning(json.response); 
+            logWarning(json.response);
+          }
+          else{
+            alertSuccess("Send success.");
+            logInfo(json.response);
+          }
+        }
+        else if(json.status == 'error' && json.error){
+          alertDanger(json.error); 
+          logDanger(json.error);
+        }
+        else{
+          alertDanger("Malformed RCON api response"); 
+          logDanger("Malformed RCON api response");
+        }
       }
-      else if(data.indexOf("Usage") != -1){
-        alertWarning(data); 
-        logWarning(data);
-        return;
+      else{
+        alertDanger("RCON api error (no status returned)"); 
+        logDanger("RCON api error (no status returned)");
       }
-      alertSuccess("Send success.");
-      logInfo(data);
     })
     .fail(function() {
       alertDanger("RCON error.");
