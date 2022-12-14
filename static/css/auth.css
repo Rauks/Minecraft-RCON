@@ -1,0 +1,78 @@
+* {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
+body {
+    background-image: url("/static/img/server.jpg");
+    background-color: rgb(70, 70, 70);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: -1;
+    backdrop-filter: blur(0.05cm);
+}
+div.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0,0,0,50%);
+    border-radius: 0.5cm;
+    margin: auto;
+    padding: 0.5cm;
+    backdrop-filter: blur(0.1cm);
+    width: 30vw;
+    text-align: center;
+}
+.message {
+    width: 30vw;
+    background-color: rgba(0,0,0,80%);
+    backdrop-filter: blur(0.1cm);
+    padding: 0.5cm;
+    border-radius: 0.5cm;
+}
+form#login {
+    width: 100%;
+}
+#user, #pass {
+    margin-top: 0.1cm;
+    margin-bottom: 0.1cm;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    padding: 0.2cm;
+    width: 60%;
+}
+input::placeholder {
+    text-align: center;
+}
+input.login {
+    display: inline-block;
+    margin-top: 0.2cm;
+    border-radius: 4px;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    transition: 500ms ease;
+}
+input.login:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+    box-shadow: 0 5px 15px #c9302caa;
+    transform: scale(1.2);
+    transition: 300ms ease;
+    cursor: pointer;
+}

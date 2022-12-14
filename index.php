@@ -1,3 +1,23 @@
+<?php
+  $isSuccess = false;
+  if (isset($_COOKIE["userInfo"])) {
+    $cookie = explode("---",$_COOKIE["userInfo"]);
+    $username = $cookie[0];
+    $pass = $cookie[1];
+    $conn = mysqli_connect("localhost","<username>","<password>","<database_name>"); // Add your MySQL database info.
+    $sql_cmd = "select * from account_list where username='" .$username. "'";
+    $statement = $conn->query($sql_cmd);
+    if ($statement->num_rows > 0) {
+      $row = $statement->fetch_assoc();
+      if ($username == $row["username"] && $pass == $row["password"]) {$isSuccess = true;};
+    };
+    $conn->close();
+  };
+  if ($isSuccess == false) {
+    header("Location: /auth/login.php");
+    exit;
+  }; // Redirect to login page if account is invalid or not exist.
+?>
 <!DOCTYPE HTML>
 <html>
   <head>
