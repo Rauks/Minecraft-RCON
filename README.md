@@ -18,7 +18,7 @@ Inspired by [Minecraft-RCON-Console](https://github.com/ekaomk/Minecraft-RCON-Co
 
 ![Sample Mobile](samples/sample-mobile.png)
 
-## Configuration
+## Configuration (Manual installation)
 
 1. Edit your Minecraft server `server.properties` configuration file in order to enable RCON:
 ```
@@ -27,12 +27,52 @@ rcon.port=25575
 rcon.password=xtMJsVtmx0XypuId7jIb
 ```
 2. Restart your Minecraft server.
-3. Download/Clone the Minecraft RCON Web Console files and edit the `config.php` file. Use the same rcon password and port than the one set in `server.properties`:
+3. Download/Clone the Minecraft RCON Web Console files and edit the `config.php` file in `www` folder. Use the same rcon password and port than the one set in `server.properties`:
 ```
 $rconHost = "localhost";
 $rconPort = 25575;
 $rconPassword = "xtMJsVtmx0XypuId7jIb";
 ```
+
+## Configuration (Docker)
+
+1. Edit your Minecraft server `server.properties` configuration file in order to enable RCON:
+```
+enable-rcon=true
+rcon.port=25575
+rcon.password=xtMJsVtmx0XypuId7jIb
+```
+2. Restart your Minecraft server.
+
+3. Run the docker image and fill the correct informations either with `docker run` or `docker compose`
+
+### Docker run:
+
+```
+docker run -d \
+  --restart unless-stopped \
+  -e RCON_HOST="<YourHost>" \
+  -e RCON_PASSWORD="<YourPassword>" \
+  -e RCON_PORT="25575" \
+  -p <MachinePort>:80 \
+  ghcr.io/xenorki/minecraft-web-rcon:1.1
+```
+
+
+### Docker compose:
+
+```
+  rcon-web:
+    image:ghcr.io/xenorki/minecraft-web-rcon:1.1 
+    restart: unless-stopped
+    environment:
+      RCON_HOST: "<YourHost>" 
+      RCON_PASSWORD: "<YourPassword>" 
+      RCON_PORT: "25575"
+    ports:
+      - "<MachinePort>:80" 
+```
+
 
 ## Warnings
 
