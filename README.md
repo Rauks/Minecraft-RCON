@@ -1,3 +1,14 @@
+> ⚠️ **Repository archived**
+>
+> This repository is no longer actively maintained.
+> The project has been completely rewritten from scratch, using a new tech stack and Docker images.
+> 
+> The new version is available here:
+> https://github.com/Rauks/Minecraft-RCON-Console
+> 
+> Thank you to all contributors ❤️
+
+
 # Minecraft-RCON
 Simple Minecraft RCON Web Console (using PHP, Bootstrap and Javascript) 
 
